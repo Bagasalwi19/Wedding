@@ -1,7 +1,7 @@
 <?php
 // Konfigurasi Keamanan & Repository
 $secret_token = 'joss'; // Ubah sesuai keinginan
-$repository_dir = '/var/www/html/nama-project-anda'; // Sesuaikan path folder project
+$repository_dir = '/root/nginx/alpine/html/Wedding'; // Sesuaikan path folder project
 
 // Validasi Token dari URL (?token=...)
 if (!isset($_GET['token']) || $_GET['token'] !== $secret_token) {
