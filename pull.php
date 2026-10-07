@@ -31,7 +31,8 @@ if (!is_dir($repository_dir)) {
 // 3. Jalankan git pull dan tangkap exit code serta output-nya
 $output = [];
 $exit_code = 0;
-$command = "cd " . escapeshellarg($repository_dir) . " && git pull 2>&1";
+, $output, $exit_code);
+$command = "cd " . escapeshellarg($repository_dir) . " && git config --global --add safe.directory " . escapeshellarg($repository_dir) . " && git pull 2>&1";
 exec($command, $output, $exit_code);
 
 // 4. Berikan respons JSON berdasarkan hasil eksekusi
