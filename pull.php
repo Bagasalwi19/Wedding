@@ -28,10 +28,9 @@ if (!is_dir($repository_dir)) {
     exit;
 }
 
-// 3. Jalankan git pull dan tangkap exit code serta output-nya
+// 3. Jalankan safe.directory config + git pull
 $output = [];
 $exit_code = 0;
-, $output, $exit_code);
 $command = "cd " . escapeshellarg($repository_dir) . " && git config --global --add safe.directory " . escapeshellarg($repository_dir) . " && git pull 2>&1";
 exec($command, $output, $exit_code);
 
