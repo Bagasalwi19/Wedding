@@ -1,0 +1,120 @@
+/* A varied editorial rhythm for the natural prewedding photographs. */
+.gallery .photo-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  align-items: start;
+  gap: clamp(16px, 2.4vw, 30px);
+  width: min(100%, 1180px);
+  max-width: 1180px;
+  margin: 68px auto 0;
+}
+
+.gallery .photo-grid .story-shot {
+  width: 100%;
+  min-height: 0;
+  margin: 0;
+  aspect-ratio: auto;
+  overflow: hidden;
+  border: 1px solid rgba(100, 71, 51, .34);
+  border-radius: 180px 180px 26px 26px;
+  background: #c6ad94;
+  box-shadow: 0 20px 44px rgba(52, 38, 30, .19);
+}
+
+.gallery .photo-grid .story-shot:nth-child(even) {
+  border-radius: 26px 26px 170px 170px;
+}
+
+.gallery .photo-grid .story-shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 34%;
+}
+
+.gallery .photo-grid .shot-intimate { grid-column: span 5; height: 650px; }
+.gallery .photo-grid .shot-tea { grid-column: span 7; height: 570px; margin-top: 80px; }
+.gallery .photo-grid .shot-hands { grid-column: span 4; height: 510px; }
+.gallery .photo-grid .shot-chair { grid-column: span 4; height: 460px; margin-top: 50px; }
+.gallery .photo-grid .shot-lantern { grid-column: span 4; height: 510px; }
+.gallery .photo-grid .shot-fan { grid-column: span 5; height: 610px; }
+.gallery .photo-grid .shot-seated { grid-column: span 7; height: 530px; margin-top: 80px; }
+.gallery .photo-grid .shot-regal { grid-column: 4 / span 6; height: 660px; margin: 25px 0 0; }
+
+.gallery .photo-grid .shot-tea img,
+.gallery .photo-grid .shot-chair img,
+.gallery .photo-grid .shot-seated img { object-position: center 54%; }
+.gallery .photo-grid .shot-regal img { object-position: center 45%; }
+
+.portrait-band img { object-position: center 22%; }
+.countdown-photo img { object-position: center 24%; }
+
+@media (max-width: 760px) {
+  .gallery .photo-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 13px;
+    margin-top: 48px;
+  }
+  .gallery .photo-grid .story-shot {
+    border-radius: 110px 110px 20px 20px;
+  }
+  .gallery .photo-grid .story-shot:nth-child(even) {
+    border-radius: 20px 20px 110px 110px;
+  }
+  .gallery .photo-grid .shot-intimate,
+  .gallery .photo-grid .shot-tea,
+  .gallery .photo-grid .shot-lantern,
+  .gallery .photo-grid .shot-regal {
+    grid-column: 1 / -1;
+    margin: 0;
+  }
+  .gallery .photo-grid .shot-intimate { height: min(130vw, 590px); }
+  .gallery .photo-grid .shot-tea { height: min(117vw, 520px); }
+  .gallery .photo-grid .shot-hands,
+  .gallery .photo-grid .shot-chair,
+  .gallery .photo-grid .shot-fan,
+  .gallery .photo-grid .shot-seated {
+    grid-column: span 1;
+    height: min(80vw, 390px);
+    margin: 0;
+  }
+  .gallery .photo-grid .shot-lantern { height: min(114vw, 510px); }
+  .gallery .photo-grid .shot-regal { height: min(122vw, 550px); }
+  .gallery .photo-grid .story-shot img { object-position: center 34%; }
+  .gallery .photo-grid .shot-tea img,
+  .gallery .photo-grid .shot-seated img { object-position: center 49%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery .photo-grid .story-shot img { transition: none; }
+}
+
+/* Desktop countdown gives the tall portrait enough height to show both faces. */
+@media (min-width: 900px) {
+  .schedule .countdown-stage {
+    min-height: 640px;
+  }
+
+  .schedule .countdown-photo img {
+    object-position: 50% 27%;
+  }
+
+  .schedule .countdown-shade {
+    background: linear-gradient(180deg, rgba(34, 27, 23, .09), transparent 47%, rgba(34, 27, 23, .2));
+  }
+
+  .schedule .countdown-copy {
+    align-self: end;
+    width: min(calc(100% - 42px), 570px);
+    margin: 0 auto 26px;
+    padding: 19px 25px 17px;
+    border: 1px solid rgba(245, 222, 188, .45);
+    border-radius: 23px;
+    background: rgba(44, 35, 30, .86);
+    box-shadow: 0 14px 34px rgba(30, 22, 18, .24);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+  }
+
+  .schedule .countdown-copy > span { margin-bottom: 12px; }
+}

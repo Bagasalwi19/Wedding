@@ -1,0 +1,86 @@
+/* Personal portraits are framed from the original photographs; the names stay outside the image. */
+.editorial .person {
+  min-height: 0;
+  padding: 35px 24px 43px;
+}
+
+.editorial .person-role { margin-bottom: 22px; }
+
+.person-photo {
+  width: min(100%, 260px);
+  aspect-ratio: 5 / 6;
+  margin: 0 auto 28px;
+  overflow: hidden;
+  border: 1px solid rgba(226, 197, 148, .72);
+  border-radius: 145px 145px 20px 20px;
+  background: #eadfd3;
+  box-shadow: 0 0 0 6px rgba(226, 197, 148, .12), 0 16px 34px rgba(0, 0, 0, .23);
+}
+
+.person-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+}
+
+@media (max-width: 760px) {
+  /* The full couple remains in the upper half; all lettering sits below their faces. */
+  .cover-photo img { object-position: 26% center; animation: none; }
+  .cover-photo::after {
+    background: linear-gradient(180deg,
+      rgba(27, 22, 19, .14) 0%,
+      rgba(27, 22, 19, .05) 38%,
+      rgba(33, 26, 22, .25) 47%,
+      rgba(33, 26, 22, .86) 67%,
+      #241e1b 100%);
+  }
+  .cover-content {
+    justify-content: flex-end;
+    padding: 24px 23px max(34px, env(safe-area-inset-bottom));
+    background: none;
+  }
+  .cover-content > .cover-medallion { display: none; }
+  .cover-content > .cover-ceremonial-arch { top: 51%; opacity: .08; }
+  .cover-main, .cover-invite { max-width: 370px; }
+  .cover-main { margin-top: 0; }
+  .cover-invite { margin-top: 8px; }
+  .cover h1 {
+    white-space: nowrap;
+    margin: 10px 0 5px;
+    font-size: clamp(2.25rem, 9.5vw, 3.6rem);
+    line-height: 1.08;
+  }
+  .cover h1 span { display: inline; margin: 0 .08em; font-size: .7em; }
+  .cover-date { margin: 8px auto 12px; padding: 9px 8px; }
+  .cover .recipient { margin-bottom: 14px; }
+  .editorial .person { padding: 36px 20px 43px; }
+  .person-photo { width: min(100%, 248px); }
+  .editorial .person h3 { font-size: clamp(2rem, 7.5vw, 2.45rem); }
+}
+
+@media (max-width: 760px) and (max-height: 710px) {
+  .cover-content { padding-bottom: max(20px, env(safe-area-inset-bottom)); }
+  .cover h1 { margin-top: 7px; font-size: clamp(2.1rem, 8.8vw, 3.2rem); }
+  .cover-date { margin: 5px auto 7px; padding-block: 7px; }
+  .cover .recipient { margin-bottom: 9px; }
+  .cover .button-filled { min-height: 48px; }
+}
+
+/* The closing signature keeps the ampersand centered on small screens. */
+@media (max-width: 760px) {
+  .closing .signature {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.06;
+  }
+
+  .closing .signature .signature-amp {
+    margin: 22px 0 10px;
+    color: #9b714b;
+    font-size: .62em;
+    line-height: 1;
+  }
+}

@@ -1,0 +1,24 @@
+.gift-card {
+  min-width: 0;
+}
+
+.gift-number {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding-inline: 18px;
+  margin: 16px 0 8px;
+  font-size: clamp(1.9rem, 3vw, 2.35rem);
+  font-variant-numeric: lining-nums tabular-nums;
+  letter-spacing: -0.025em;
+  white-space: nowrap;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+@media (max-width: 760px) {
+  .gift-number {
+    padding-inline: 10px;
+    font-size: clamp(1.6rem, 6.4vw, 2rem);
+  }
+}

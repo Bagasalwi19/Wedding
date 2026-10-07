@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Simulasi Preview Open Graph — Bagas & Vania</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f1214;
+      --card-bg: #1a1e22;
+      --text: #e8eaed;
+      --subtext: #9aa0a6;
+      --accent: #b49a66;
+      --border: #2c3138;
+      --green: #25d366;
+      --apple: #007aff;
+      --fb: #1877f2;
+      --ig: #e1306c;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 30px 20px 60px;
+      line-height: 1.5;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    header p {
+      color: var(--subtext);
+      font-size: 0.95rem;
+    }
+    .badge-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #23282f;
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: #d1d5db;
+    }
+    .badge span { color: var(--accent); font-weight: 700; }
+
+    /* Grid of preview devices */
+    .preview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 28px;
+    }
+    .preview-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.4);
+    }
+    .box-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .box-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .indicator {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    /* WhatsApp Card Mockup */
+    .wa-bubble {
+      background: #005c4b;
+      border-radius: 12px;
+      overflow: hidden;
+      max-width: 330px;
+      margin: 0 auto;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+    }
+    .wa-img-wrap {
+      width: 100%;
+      height: 240px;
+      overflow: hidden;
+      background: #000;
+      position: relative;
+    }
+    .wa-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+    .wa-meta {
+      padding: 12px 14px;
+      background: #025143;
+    }
+    .wa-site {
+      font-size: 0.72rem;
+      color: #8696a0;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 2px;
+    }
+    .wa-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #e9edef;
+      line-height: 1.3;
+      margin-bottom: 4px;
+    }
+    .wa-desc {
+      font-size: 0.8rem;
+      color: #8696a0;
+      line-height: 1.35;
+    }
+    .wa-time {
+      text-align: right;
+      padding: 2px 10px 6px;
+      font-size: 0.68rem;
+      color: #8696a0;
+    }
+
+    /* Apple iMessage Mockup */
+    .apple-bubble {
+      background: #262629;
+      border-radius: 18px;
+      overflow: hidden;
+      max-width: 320px;
+      margin: 0 auto;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+      border: 1px solid #38383a;
+    }
+    .apple-img-wrap {
+      width: 100%;
+      height: 220px;
+      overflow: hidden;
+      background: #111;
+    }
+    .apple-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 25%;
+      display: block;
+    }
+    .apple-content {
+      padding: 12px 16px 14px;
+    }
+    .apple-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .apple-desc {
+      font-size: 0.82rem;
+      color: #8e8e93;
+      margin-bottom: 6px;
+    }
+    .apple-domain {
+      font-size: 0.72rem;
+      color: #636366;
+    }
+
+    /* Facebook / Instagram Card Mockup */
+    .meta-card {
+      background: #242526;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #3a3b3c;
+      max-width: 330px;
+      margin: 0 auto;
+    }
+    .meta-img-wrap {
+      width: 100%;
+      height: 210px;
+      overflow: hidden;
+    }
+    .meta-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      display: block;
+    }
+    .meta-content {
+      padding: 10px 14px 12px;
+      background: #242526;
+    }
+    .meta-domain {
+      font-size: 0.7rem;
+      color: #b0b3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .meta-title {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #e4e6eb;
+      margin: 3px 0 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .meta-desc {
+      font-size: 0.78rem;
+      color: #b0b3b8;
+      line-height: 1.3;
+    }
+
+    /* Technical spec details */
+    .specs-card {
+      margin-top: 35px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+    }
+    .specs-card h3 {
+      font-size: 1.15rem;
+      color: #fff;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .specs-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+    .specs-table th, .specs-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+    }
+    .specs-table th {
+      color: var(--subtext);
+      font-weight: 500;
+      width: 30%;
+    }
+    .specs-table td {
+      color: #e5e7eb;
+      font-family: monospace;
+    }
+    .specs-table td.valid {
+      color: #34d399;
+      font-weight: 600;
+    }
+    .links-bar {
+      margin-top: 25px;
+      text-align: center;
+    }
+    .btn-return {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: #171a1b;
+      padding: 12px 26px;
+      border-radius: 999px;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-return:hover {
+      background: #c5ad7c;
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Pratinjau Open Graph (Link Preview)</h1>
+      <p>Simulasi tampilan tautan saat dibagikan ke WhatsApp, Instagram, Facebook, dan Apple iMessage</p>
+      
+      <div class="badge-bar">
+        <div class="badge">Resolusi: <span>900 × 1350 px</span></div>
+        <div class="badge">Rasio: <span>2:3 (Vertikal Penuh)</span></div>
+        <div class="badge">Ukuran File: <span>~284.6 KB (Optimal &lt; 300 KB)</span></div>
+        <div class="badge">Format: <span>JPEG (RGB)</span></div>
+      </div>
+    </header>
+
+    <div class="preview-grid">
+      <!-- 1. WhatsApp Android & iOS -->
+      <div class="preview-box">
+        <div class="box-header">
+          <div class="box-title">
+            <span class="indicator" style="background: var(--green);"></span>
+            WhatsApp (Android &amp; iPhone)
+          </div>
+          <span style="font-size: 0.75rem; color: #8696a0;">Chat Bubble</span>
+        </div>
+        <div class="wa-bubble">
+          <div class="wa-img-wrap">
+            <img src="photos/og-bagas-vania-portrait-v3.jpg" alt="Preview Open Graph Bagas &amp; Vania">
+          </div>
+          <div class="wa-meta">
+            <div class="wa-site">UNDANGAN BAGAS &amp; VANIA</div>
+            <div class="wa-title">The Wedding of Bagas &amp; Vania</div>
+            <div class="wa-desc">Selasa, 24 November 2026 · Trangkil, Pati</div>
+          </div>
+          <div class="wa-time">10:45 ✓✓</div>
+        </div>
+      </div>
+
+      <!-- 2. Apple iMessage / Messages -->
+      <div class="preview-box">
+        <div class="box-header">
+          <div class="box-title">
+            <span class="indicator" style="background: var(--apple);"></span>
+            Apple (iOS / iMessage)
+          </div>
+          <span style="font-size: 0.75rem; color: #8e8e93;">Rich Link</span>
+        </div>
+        <div class="apple-bubble">
+          <div class="apple-img-wrap">
+            <img src="photos/og-bagas-vania-portrait-v3.jpg" alt="Preview Open Graph Bagas &amp; Vania">
+          </div>
+          <div class="apple-content">
+            <div class="apple-title">The Wedding of Bagas &amp; Vania</div>
+            <div class="apple-desc">Selasa, 24 November 2026 · Trangkil, Pati</div>
+            <div class="apple-domain">bagas-vania-24-november-2026.bagasalwi19022002.chatgpt.site</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Facebook & Instagram DM -->
+      <div class="preview-box">
+        <div class="box-header">
+          <div class="box-title">
+            <span class="indicator" style="background: var(--fb);"></span>
+            Facebook &amp; Instagram DM
+          </div>
+          <span style="font-size: 0.75rem; color: #b0b3b8;">Meta Card</span>
+        </div>
+        <div class="meta-card">
+          <div class="meta-img-wrap">
+            <img src="photos/og-bagas-vania-portrait-v3.jpg" alt="Preview Open Graph Bagas &amp; Vania">
+          </div>
+          <div class="meta-content">
+            <div class="meta-domain">BAGAS-VANIA-24-NOVEMBER-2026...</div>
+            <div class="meta-title">The Wedding of Bagas &amp; Vania</div>
+            <div class="meta-desc">Undangan pernikahan Bagas Alwiyantoro dan Stevania Febriyanti, Selasa 24 November 2026 di Trangkil, Pati.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Technical Validation Table -->
+    <div class="specs-card">
+      <h3>⚙️ Spesifikasi Teknis Meta Tag Open Graph</h3>
+      <table class="specs-table">
+        <tbody>
+          <tr>
+            <th>og:title</th>
+            <td>The Wedding of Bagas &amp; Vania</td>
+          </tr>
+          <tr>
+            <th>og:description</th>
+            <td>Selasa, 24 November 2026 · Trangkil, Pati</td>
+          </tr>
+          <tr>
+            <th>og:image</th>
+            <td>.../photos/og-bagas-vania-portrait-v3.jpg</td>
+          </tr>
+          <tr>
+            <th>og:image:width &amp; height</th>
+            <td class="valid">900 × 1350 px (Vertikal 2:3) ✓ Valid</td>
+          </tr>
+          <tr>
+            <th>Ukuran File Gambar</th>
+            <td class="valid">284.6 KB (Dibawah limit 300 KB WhatsApp) ✓ Valid</td>
+          </tr>
+          <tr>
+            <th>Schema.org Microdata</th>
+            <td class="valid">itemprop="name", itemprop="description", itemprop="image" ✓ Aktif</td>
+          </tr>
+          <tr>
+            <th>Apple iOS Touch Icon</th>
+            <td class="valid">apple-touch-icon 180x180 &amp; web-app-title ✓ Aktif</td>
+          </tr>
+          <tr>
+            <th>Twitter / X Cards</th>
+            <td class="valid">twitter:card = summary_large_image ✓ Aktif</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="links-bar">
+      <a class="btn-return" href="index.html">← Kembali ke Halaman Undangan</a>
+    </div>
+  </div>
+
+</body>
+</html>
