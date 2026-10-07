@@ -92,7 +92,7 @@
         <form class="wishes-form reveal" id="wishes-form">
           <label><span>Nama</span><input name="name" maxlength="60" autocomplete="name" required placeholder="Nama Anda"></label>
           <label><span>Ucapan</span><textarea name="message" maxlength="500" rows="5" required placeholder="Tuliskan doa dan ucapan terbaik"></textarea></label>
-          <label><span>Konfirmasi kehadiran</span><select name="attendance" required><option value="">Pilih konfirmasi</option><option value="hadir">Insyaallah hadir</option><option value="tidak_hadir">Maaf, tidak dapat hadir</option><option value="ragu">Masih belum pasti</option></select></label>
+          <label><span>Konfirmasi kehadiran</span><select name="attendance" required><option value="">Pilih konfirmasi</option><option value="hadir">Insya Allah hadir</option><option value="tidak_hadir">Maaf, tidak dapat hadir</option><option value="ragu">Masih belum pasti</option></select></label>
           <input class="wishes-honeypot" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
           <button class="button wishes-submit" type="submit">Kirim ucapan</button>
           <p class="wishes-feedback" role="status" aria-live="polite"></p>

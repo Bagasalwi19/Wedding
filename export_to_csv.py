@@ -17,7 +17,7 @@ def export_csv():
     stats = data.get("stats", {})
 
     attendance_map = {
-        "hadir": "Insyaallah Hadir",
+        "hadir": "Insya Allah Hadir",
         "tidak_hadir": "Tidak Dapat Hadir",
         "ragu": "Belum Pasti"
     }

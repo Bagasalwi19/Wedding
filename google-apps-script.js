@@ -85,7 +85,7 @@ function doPost(e) {
     
     // Label kehadiran yang ramah dibaca
     var statusLabel = {
-      'hadir': ' Insyaallah Hadir',
+      'hadir': ' Insya Allah Hadir',
       'tidak_hadir': '❌ Tidak Dapat Hadir',
       'ragu': '❓ Belum Pasti'
     }[kehadiran] || kehadiran;

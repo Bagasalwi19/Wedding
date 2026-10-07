@@ -15,7 +15,7 @@
     : '';
 
   const attendanceLabels = {
-    hadir: 'InsyaAllah hadir',
+    hadir: 'Insya Allah hadir',
     tidak_hadir: 'Tidak dapat hadir',
     ragu: 'Belum pasti'
   };
