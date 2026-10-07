@@ -4,7 +4,7 @@ header('Content-Type: application/json; charset=utf-8');
 
 // Konfigurasi Keamanan & Repository
 $secret_token = 'joss'; // Ubah sesuai keinginan
-$repository_dir = '/root/nginx/alpine/html/Wedding\'; // Path folder project di dalam container
+$repository_dir = '/root/nginx/alpine/html/Wedding/'; // Path folder project di dalam container
 
 // 1. Validasi Token dari URL (?token=...)
 if (!isset($_GET['token']) || $_GET['token'] !== $secret_token) {
