@@ -52,4 +52,3 @@ if ($exit_code === 0) {
         'output' => $output
     ], JSON_PRETTY_PRINT);
 }
-```
