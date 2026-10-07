@@ -15,7 +15,7 @@
     : '';
 
   const attendanceLabels = {
-    hadir: 'Insyaallah hadir',
+    hadir: 'InsyaAllah hadir',
     tidak_hadir: 'Tidak dapat hadir',
     ragu: 'Belum pasti'
   };
@@ -68,24 +68,66 @@
 
     payload.wishes.forEach((wish, index) => {
       const article = document.createElement('article');
-      article.className = 'wish-card';
+      article.className = 'wish-comment wish-card';
       article.style.setProperty('--wish-delay', `${Math.min(index, 7) * 65}ms`);
 
-      const head = document.createElement('div');
-      head.className = 'wish-head';
+      // Avatar bulat dengan inisial pengirim
+      const avatar = document.createElement('div');
+      avatar.className = 'wish-avatar';
+      avatar.setAttribute('aria-hidden', 'true');
+      const rawName = (wish.name || '').trim();
+      avatar.textContent = rawName ? rawName.charAt(0).toUpperCase() : '❤';
+
+      // Konten komentar
+      const body = document.createElement('div');
+      body.className = 'wish-body';
+
+      // Header: Pengirim, waktu, dan status konfirmasi
+      const header = document.createElement('div');
+      header.className = 'wish-header wish-head';
+
+      const meta = document.createElement('div');
+      meta.className = 'wish-author-meta';
+
       const name = document.createElement('strong');
-      name.textContent = wish.name;
+      name.className = 'wish-author-name';
+      name.textContent = rawName || 'Tamu Undangan';
+
+      const date = document.createElement('time');
+      date.className = 'wish-time';
+      if (wish.created_at) date.dateTime = wish.created_at;
+      date.textContent = formatDate(wish.created_at);
+
+      meta.append(name, date);
+
+      const attendance = wish.attendance || 'ragu';
       const badge = document.createElement('span');
-      badge.className = `wish-badge wish-${wish.attendance}`;
-      badge.textContent = attendanceLabels[wish.attendance] || 'Ucapan';
-      head.append(name, badge);
+      badge.className = `wish-badge wish-${attendance}`;
+
+      const icon = document.createElement('span');
+      icon.className = 'wish-badge-icon';
+      icon.setAttribute('aria-hidden', 'true');
+      if (attendance === 'hadir') {
+        icon.textContent = '✓';
+      } else if (attendance === 'tidak_hadir') {
+        icon.textContent = '✕';
+      } else {
+        icon.textContent = '•';
+      }
+
+      const label = document.createElement('span');
+      label.className = 'wish-badge-label';
+      label.textContent = attendanceLabels[attendance] || 'Ucapan';
+
+      badge.append(icon, label);
+      header.append(meta, badge);
 
       const message = document.createElement('p');
-      message.textContent = wish.message;
-      const date = document.createElement('time');
-      date.dateTime = wish.created_at;
-      date.textContent = formatDate(wish.created_at);
-      article.append(head, message, date);
+      message.className = 'wish-text';
+      message.textContent = wish.message || '';
+
+      body.append(header, message);
+      article.append(avatar, body);
       list.appendChild(article);
     });
   };
