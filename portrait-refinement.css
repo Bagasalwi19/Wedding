@@ -23,11 +23,19 @@
   height: 100%;
   object-fit: cover;
   object-position: center 20%;
+  transform: scale(1.30);
+  transform-origin: center 42%;
+}
+
+/* Bring the couple closer in the cover while keeping the cover frame unchanged. */
+@keyframes slowzoom {
+  from { transform: scale(1.18); }
+  to { transform: scale(1.10); }
 }
 
 @media (max-width: 760px) {
   /* The full couple remains in the upper half; all lettering sits below their faces. */
-  .cover-photo img { object-position: 26% center; animation: none; }
+  .cover-photo img { object-position: 26% center; animation: none; transform: scale(1.12); }
   .cover-photo::after {
     background: linear-gradient(180deg,
       rgba(27, 22, 19, .14) 0%,
