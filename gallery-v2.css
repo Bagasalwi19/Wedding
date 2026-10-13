@@ -21,6 +21,12 @@
   box-shadow: 0 20px 44px rgba(52, 38, 30, .19);
 }
 
+.gallery .photo-grid .story-shot picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .gallery .photo-grid .story-shot:nth-child(even) {
   border-radius: 26px 26px 170px 170px;
 }
