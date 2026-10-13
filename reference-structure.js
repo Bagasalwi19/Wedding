@@ -1,4 +1,4 @@
-(() => {
+﻿(() => {
   const main = document.getElementById('main');
   const editorial = main?.querySelector('.editorial');
   const scheduleInner = main?.querySelector('.schedule .narrow');
@@ -46,7 +46,7 @@
       {
         label: 'Perayaan cinta',
         title: 'Resepsi',
-        time: '10.00 WIB – selesai',
+        time: '10.00 WIB â€“ selesai',
         place: 'Kediaman mempelai wanita<br>Desa Mojoagung RT 03/RW 02, Trangkil',
         href: 'https://maps.app.goo.gl/hrZVxfkpQYuadmTk6',
         action: 'Lokasi Resepsi'
@@ -61,7 +61,7 @@
         <h3>${item.title}</h3>
         <div class="event-date"><b>24</b><span>Selasa<br>November 2026</span></div>
         <strong>${item.time}</strong>
-        <span class="event-divider" aria-hidden="true">⌂</span>
+        <span class="event-divider" aria-hidden="true">âŒ‚</span>
         <p>${item.place}</p>
         ${item.href ? `<a class="button map-button" href="${item.href}" target="_blank" rel="noopener noreferrer">${item.action}</a>` : ''}`;
     });
@@ -97,7 +97,7 @@
           <button class="button wishes-submit" type="submit">Kirim ucapan</button>
           <p class="wishes-feedback" role="status" aria-live="polite"></p>
         </form>
-        <div class="wishes-list reveal" id="wishes-list" aria-live="polite"><p class="wishes-empty">Memuat ucapan…</p></div>
+        <div class="wishes-list reveal" id="wishes-list" aria-live="polite"><p class="wishes-empty">Memuat ucapanâ€¦</p></div>
       </div>`;
     gift.before(wishes);
   }
@@ -116,7 +116,7 @@
           <div class="opening-monogram" aria-hidden="true">B<i>&</i>V</div>
           <span class="opening-divider" aria-hidden="true"><i></i></span>
           <h2><span class="opening-name">Bagas</span> <span class="opening-name-amp">&amp;</span> <span class="opening-name">Vania</span></h2>
-          <time datetime="2026-11-24">Selasa · 24 November 2026</time>
+          <time datetime="2026-11-24">Selasa Â· 24 November 2026</time>
           <p class="opening-note">Dengan penuh cinta, kami mengundang Anda menjadi bagian dari hari bahagia kami.</p>
           <div class="opening-scroll"><b aria-hidden="true"></b><small>Gulir untuk melihat</small></div>
         </div>
@@ -150,7 +150,7 @@
     stage.className = 'countdown-stage scene-reveal';
     stage.setAttribute('aria-label', 'Hitung mundur menuju hari pernikahan');
     stage.innerHTML = `
-      <div class="countdown-photo"><img src="photos/prewed-countdown-v2.jpg" alt="Bagas dan Vania mengenakan busana adat" loading="lazy"></div>
+      <div class="countdown-photo"><img src="photos/optimized/prewed-countdown-v2.webp" alt="Bagas dan Vania mengenakan busana adat" loading="lazy"></div>
       <div class="countdown-shade"></div>
       <div class="countdown-copy">
         <span>Menuju hari bahagia</span>
@@ -294,3 +294,4 @@
     staged.forEach(item => item.classList.add('visible'));
   }
 })();
+
