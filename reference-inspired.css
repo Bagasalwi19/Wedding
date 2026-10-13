@@ -593,6 +593,27 @@ body.locked .desktop-copy {
   .botanical-top-right { top: -43px; right: -56px; }
   .botanical-bottom-left { bottom: -47px; left: -55px; }
   .botanical-bottom-right { right: -56px; bottom: -47px; }
+
+  /* Keep gallery reveals gentle on narrow screens. */
+  .gallery .reveal {
+    transition: opacity 1.55s ease, transform 1.8s cubic-bezier(.22, 1, .36, 1), filter 1.55s ease;
+    will-change: opacity, transform, filter;
+  }
+  .gallery .photo-grid figure:first-child:not(.visible) {
+    transform: translateX(-12px) translateY(18px) scale(.985);
+    filter: blur(3px);
+  }
+  .gallery .photo-grid figure:last-child:not(.visible) {
+    transform: translateX(12px) translateY(18px) scale(.985);
+    filter: blur(3px);
+  }
+  .gallery .photo-grid figure:not(:first-child):not(:last-child):not(.visible) {
+    transform: translateY(24px) scale(.985);
+    filter: blur(3px);
+  }
+  .gallery .photo-grid figure.visible {
+    filter: blur(0);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
