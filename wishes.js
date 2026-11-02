@@ -9,6 +9,33 @@
   const feedback = form.querySelector('.wishes-feedback');
   const submit = form.querySelector('.wishes-submit');
 
+  // === GATE: hanya tamu terdaftar (kontrol-undangan) yang boleh kirim ucapan ===
+  let allowed = false;
+  const nameField = form.querySelector('[name="name"]');
+  const invitedName = (new URLSearchParams(window.location.search).get('to') || '').trim();
+  const lockOut = (msg) => {
+    allowed = false;
+    form.querySelectorAll('input, textarea, select, button').forEach(el => { el.disabled = true; });
+    if (feedback) feedback.textContent = msg;
+  };
+  const allowIn = () => {
+    allowed = true;
+    if (nameField) { nameField.value = invitedName; nameField.readOnly = true; }
+    if (submit) submit.disabled = false;
+  };
+  (async () => {
+    if (!invitedName) { lockOut('Ucapan hanya untuk tamu terundang. Silakan buka melalui tautan undangan pribadi dari kami \uD83D\uDE4F'); return; }
+    if (submit) submit.disabled = true;
+    try {
+      const r = await fetch('https://kontrol-undangan.alw.my.id/api/verify?name=' + encodeURIComponent(invitedName), { headers: { Accept: 'application/json' } });
+      const d = await r.json();
+      if (d && d.valid) allowIn();
+      else lockOut('Maaf, nama tamu tidak terdaftar. Ucapan hanya untuk tamu yang kami undang \uD83D\uDE4F');
+    } catch (e) {
+      lockOut('Tidak dapat memverifikasi tamu. Silakan muat ulang halaman.');
+    }
+  })();
+
   const isHttp = window.location.protocol.startsWith('http');
   const getSheetUrl = () => (typeof WEDDING_CONFIG !== 'undefined' && WEDDING_CONFIG.googleSheetWebAppUrl) 
     ? WEDDING_CONFIG.googleSheetWebAppUrl.trim() 
@@ -167,6 +194,7 @@
 
   form.addEventListener('submit', async event => {
     event.preventDefault();
+    if (!allowed) { if (feedback) feedback.textContent = 'Ucapan hanya untuk tamu terundang \uD83D\uDE4F'; return; }
     feedback.textContent = '';
     submit.disabled = true;
     submit.textContent = 'Mengirim…';
